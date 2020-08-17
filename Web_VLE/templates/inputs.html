@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>VLE Diagram Builder</h1>
+    <p>
+        This application calculates and plots the bubble and dew curves of a binary mixture at a given temperature
+        and pressure. The compound that is plotted can be changed and the complexity of the calculation can also be modified.
+    </p>
+    <table>
+        <form method="post" action=".">
+            <tr>
+                {{ errors }}
+                <p>Enter your data:</p>
+            </tr>
+    <!-- User Inputs -->
+            <tr>
+                <td>
+                    <label for="Compound 1">Compound 1:</label>
+                </td>
+                <td>
+                    <input type="text" name="Compound 1" required autofocus/>
+                </td>
+                <td>
+                    <input type="checkbox" name="Ideal" checked/>
+                </td>
+                <td>
+                    <label for="Ideal">Ideal</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Compound 2">Compound 2:</label>
+                </td>
+                <td>
+                    <input type="text" name="Compound 2" required/>
+                </td>
+                <td>
+                    <input type="checkbox" name="IgnoreAnt" checked/>
+                </td>
+                <td>
+                    <label for="IgnoreAnt">Ignore Antoine Temperature Ranges</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Pressure">Initial Pressure:</label>
+                </td>
+                <td>
+                    <input type="text" name="Pressure" size="10" required/>
+                    <select id="PUnits" name="PUnits">
+                        <option value="bar">bar</option>
+                        <option value="atm">atm</option>
+                        <option value="kPa">kPa</option>
+                        <option value="Pa">Pa</option>
+                        <option value="mmHg">mmHg</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="checkbox" name="UseComp2"/>
+                </td>
+                <td>
+                    <label for="UseComp2">Use Compound 2 for Calculations</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Temperature">Initial Temperature:</label>
+                </td>
+                <td>
+                    <input type="text" name="Temperature" size="10" required/>
+                    <select id="TUnits" name="TUnits" >
+                        <option value="K">K</option>
+                        <option value="&#176;F">&#176;F</option>
+                        <option value="&#176;C">&#176;C</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="radio" id="IsoThermal" name="IsoCalc" value="IsoThermal" checked/>
+                </td>
+                <td>
+                    <label for="IsoThermal">Isothermal Calculation</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Specificity">Specificity:</label>
+                </td>
+                <td>
+                    <input type="text" name="Specificity" value="10" required/>
+                </td>
+                <td>
+                    <input type="radio" id="IsoBaric" name="IsoCalc" value="IsoBaric"/>
+                </td>
+                <td>
+                    <label for="IsoBaric">Isobaric Calculation</label>
+                </td>
+            </tr>
+    <!-- Calculation -->
+            <tr>
+                <td>
+                    <input type="submit" name="action" value="Calculate" />
+                </td>
+            </tr>
+        </form>
+    </table>
+{% endblock %}

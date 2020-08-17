@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <html>
+        <body>
+            <table>
+                <tr>
+                    <td>
+                        <div id="chart">
+                            <embed type="image/svg+xml" src= {{chart|safe}} />
+                        </div>
+                    </td>
+                    <td>
+                        <h1>
+                            Table of VLE Data
+                        </h1>
+
+                        <table>
+                            <tr>
+                                <th>Mole Fraction</th>
+                                <th>Bubble Point</th>
+                                <th>Dew Point</th>
+                            </tr>
+                            {% for tuple in data %}
+                                <tr>
+                                    {% for item in tuple %}
+                                    <td>{{ item }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            {% for result in result %}
+            <p>{{ result }}</p>
+            {% endfor %}
+
+            <p>
+                <a href="/">Click here to calculate again</a>
+            </p>
+        </body>
+    </html>
+{% endblock %}
